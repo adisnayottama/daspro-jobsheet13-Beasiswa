@@ -31,12 +31,22 @@ public class Beasiswa02 {
             sc.nextLine();
 
             switch (pilih) {
-                case 1: tambahData(); break;
-                case 2: tampilData(); break;
-                case 3: cariJenis(); break;
-                case 4: rataRata(); break;
-                case 5: break;
-                default: System.out.println("Pilihan tidak valid.");
+                case 1:
+                    tambahData();
+                    break;
+                case 2:
+                    tampilData();
+                    break;
+                case 3:
+                    cariJenis();
+                    break;
+                case 4:
+                    rataRata();
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid.");
             }
 
         } while (pilih != 5);
@@ -116,13 +126,16 @@ public class Beasiswa02 {
 
         for (int i = 0; i < jumlah; i++) {
             if (jenis[i].equalsIgnoreCase("Reguler")) {
-                totalR += ipk[i]; countR++;
+                totalR += ipk[i];
+                countR++;
             }
             if (jenis[i].equalsIgnoreCase("Unggulan")) {
-                totalU += ipk[i]; countU++;
+                totalU += ipk[i];
+                countU++;
             }
             if (jenis[i].equalsIgnoreCase("Riset")) {
-                totalRi += ipk[i]; countRi++;
+                totalRi += ipk[i];
+                countRi++;
             }
         }
 
