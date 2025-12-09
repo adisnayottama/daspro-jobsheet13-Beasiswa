@@ -2,14 +2,9 @@ import java.util.Scanner;
 public class Beasiswa02 {
 
     static Scanner sc = new Scanner(System.in);
+
     static final int MAX = 100;
-
-    static String[] nama = new String[MAX];
-    static String[] nim = new String[MAX];
-    static double[] ipk = new double[MAX];
-    static String[] jenis = new String[MAX];
-    static int[] penghasilan = new int[MAX];
-
+    static String[][] data = new String[MAX][5];
     static int jumlah = 0;
 
     public static void main(String[] args) {
@@ -55,32 +50,31 @@ public class Beasiswa02 {
     static void tambahData() {
 
         System.out.print("Nama Mahasiswa: ");
-        String n = sc.nextLine();
+        String nama = sc.nextLine();
 
         System.out.print("NIM: ");
-        String nm = sc.nextLine();
+        String nim = sc.nextLine();
 
         System.out.print("IPK terakhir: ");
-        double ip = sc.nextDouble();
-        sc.nextLine();
+        String ipk = sc.nextLine();
 
         System.out.print("Jenis Beasiswa (Reguler/Unggulan/Riset): ");
-        String jb = sc.nextLine();
+        String jenis = sc.nextLine();
 
         System.out.print("Penghasilan orang tua (maksimal 2000000): ");
-        int pg = sc.nextInt();
+        int penghasilan = sc.nextInt();
         sc.nextLine();
 
-        if (pg > 2000000) {
+        if (penghasilan > 2000000) {
             System.out.println("Pendaftaran dibatalkan karena penghasilan melebihi batas maksimal.");
             return;
         }
 
-        nama[jumlah] = n;
-        nim[jumlah] = nm;
-        ipk[jumlah] = ip;
-        jenis[jumlah] = jb;
-        penghasilan[jumlah] = pg;
+        data[jumlah][0] = nama;
+        data[jumlah][1] = nim;
+        data[jumlah][2] = ipk;
+        data[jumlah][3] = jenis;
+        data[jumlah][4] = String.valueOf(penghasilan);
 
         jumlah++;
 
@@ -95,20 +89,27 @@ public class Beasiswa02 {
         }
 
         for (int i = 0; i < jumlah; i++) {
-            System.out.println((i + 1) + ". " + nama[i] + " - " + jenis[i] + " - IPK: " + ipk[i]);
+            System.out.println((i + 1) + ". "
+                    + data[i][0] + " - "
+                    + data[i][3] + " - IPK: "
+                    + data[i][2]);
         }
     }
 
     static void cariJenis() {
 
         System.out.print("Jenis Beasiswa (Reguler/Unggulan/Riset): ");
-        String j = sc.nextLine();
+        String jenisCari = sc.nextLine();
 
         boolean ada = false;
 
         for (int i = 0; i < jumlah; i++) {
-            if (jenis[i].equalsIgnoreCase(j)) {
-                System.out.println((i + 1) + ". " + nama[i] + " - " + jenis[i] + " - IPK: " + ipk[i]);
+
+            if (data[i][3].equalsIgnoreCase(jenisCari)) {
+                System.out.println((i + 1) + ". "
+                        + data[i][0] + " - "
+                        + data[i][3] + " - IPK: "
+                        + data[i][2]);
                 ada = true;
             }
         }
@@ -119,22 +120,24 @@ public class Beasiswa02 {
     }
 
     static void rataRata() {
-        double totalR, totalU, totalRi;
-        totalR = totalU = totalRi = 0;
 
+        double totalR = 0, totalU = 0, totalRi = 0;
         int countR = 0, countU = 0, countRi = 0;
 
         for (int i = 0; i < jumlah; i++) {
-            if (jenis[i].equalsIgnoreCase("Reguler")) {
-                totalR += ipk[i];
+
+            if (data[i][3].equalsIgnoreCase("Reguler")) {
+                totalR += Double.parseDouble(data[i][2]);
                 countR++;
             }
-            if (jenis[i].equalsIgnoreCase("Unggulan")) {
-                totalU += ipk[i];
+
+            if (data[i][3].equalsIgnoreCase("Unggulan")) {
+                totalU += Double.parseDouble(data[i][2]);
                 countU++;
             }
-            if (jenis[i].equalsIgnoreCase("Riset")) {
-                totalRi += ipk[i];
+
+            if (data[i][3].equalsIgnoreCase("Riset")) {
+                totalRi += Double.parseDouble(data[i][2]);
                 countRi++;
             }
         }
